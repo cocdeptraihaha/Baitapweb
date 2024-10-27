@@ -12,4 +12,5 @@ public interface IUserService {
 	boolean checkExistUsername(String username);
 
 	boolean register(String username, String password);
+	boolean resetPass(String username, String password);
 }

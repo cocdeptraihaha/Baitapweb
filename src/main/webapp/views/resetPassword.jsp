@@ -7,10 +7,10 @@
 <title>Reset password</title>
 </head>
 <body>
-<form method="post" action="/Servlet/quen-mat-khau">
+<form action="/Servlet/quen-mat-khau" method="post">
 
-	${username}
-	
+	<label for="username">Username:</label> 
+	<input type="text" id="username" name="username" title="username" /> 
 	<label for="newPassword">New Password:</label> 
 	<input type="password" id="newPassword" name="newPassword" title="New password" /> 
 	<label for="confirmPassword">Confirm Password:</label> 

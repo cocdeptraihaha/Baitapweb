@@ -76,4 +76,26 @@ public class UserDaoImp implements IUserDao {
 		return duplicate;
 	}
 
+	@Override
+	public void update(String username, String password) {
+		
+		String sql = "UPDATE user SET password = ? WHERE username = ?";
+
+		try {
+			new DBConnectionMySQL();
+			conn = DBConnectionMySQL.getConnection();
+
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, password);
+			ps.setString(2, username);
+
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 }

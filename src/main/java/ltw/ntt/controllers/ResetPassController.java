@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import ltw.ntt.services.IUserService;
 import ltw.ntt.services.UserServiceImp;
+import ltw.ntt.utils.*;
 
 @WebServlet(urlPatterns = { "/quen-mat-khau" })
 public class ResetPassController extends HttpServlet {
@@ -28,8 +29,9 @@ public class ResetPassController extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
 
-		String password = req.getParameter("password");
-		String passwordVerify = req.getParameter("password-verify");
+		String username = req.getParameter("username");
+		String password = req.getParameter("newPassword");
+		String passwordVerify = req.getParameter("confirmPassword");
 
 		IUserService service = new UserServiceImp();
 		String alertMsg = "";
@@ -44,11 +46,11 @@ public class ResetPassController extends HttpServlet {
 
 		if (password != null && passwordVerify != null && password.equals(passwordVerify)) {
 
-			boolean isSuccess = service.resetpass(username, password);
+			boolean isSuccess = service.resetPass(username, password);
 
 			if (isSuccess) {
 				req.setAttribute("alert", alertMsg);
-				resp.sendRedirect("./login");
+				resp.sendRedirect("./dang-nhap");
 			} else {
 				alertMsg = "Cập nhật không thành công!";
 				req.setAttribute("alert", alertMsg);

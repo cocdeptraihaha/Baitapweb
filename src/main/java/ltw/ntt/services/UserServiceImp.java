@@ -42,4 +42,14 @@ public class UserServiceImp implements IUserService {
 		}
 	}
 
+	@Override
+	public boolean resetPass(String username, String password) {
+		if (!userDao.checkExistUsername(username)) {
+			return false;
+		} else {
+		userDao.update(username, password);
+		return true;
+		}
+	}
+
 }
